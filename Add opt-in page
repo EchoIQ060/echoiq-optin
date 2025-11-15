@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EchoIQ Appointment SMS Opt-In</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7f7f7; padding: 40px; text-align: center; }
+    .container { background: #fff; padding: 30px; border-radius: 10px; max-width: 500px; margin: auto; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    h1 { color: #333; }
+    label { display: block; margin: 20px 0 10px; font-size: 16px; }
+    input[type="checkbox"] { margin-right: 10px; }
+    button { padding: 10px 20px; font-size: 16px; border: none; border-radius: 5px; background: #007bff; color: white; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    .confirmation { color: green; margin-top: 20px; display: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>EchoIQ SMS Appointment Reminders</h1>
+    <p>Please opt-in to receive appointment reminders, confirmations, and support messages via SMS from your dental office.</p>
+    <form id="optinForm">
+      <label>
+        <input type="checkbox" id="consentCheckbox" required>
+        I consent to receive SMS messages from my dental office.
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+    <div class="confirmation" id="confirmationMessage">
+      Thank you! You are now opted-in to receive appointment reminders. Reply HELP for assistance or STOP to unsubscribe.
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('optinForm');
+    const confirmation = document.getElementById('confirmationMessage');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      if (document.getElementById('consentCheckbox').checked) {
+        form.style.display = 'none';
+        confirmation.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>
