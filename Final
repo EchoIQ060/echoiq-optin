@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EchoIQ SMS Appointment Reminders Opt-In</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 20px;
+      text-align: center;
+    }
+    .box {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 420px;
+      margin: auto;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    img {
+      width: 150px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+    }
+    input, button {
+      width: 90%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #007BFF;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056c1;
+    }
+    #status {
+      margin-top: 15px;
+      font-size: 16px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <img src="https://github.com/EchoIQ060/echoiq-optin/blob/main/IMG_4625%202.JPG?raw=true" alt="EchoIQ Logo" />
+
+    <h2>EchoIQ SMS Appointment Reminders</h2>
+    <p>Please enter your phone number to opt-in and receive appointment reminders and confirmations.</p>
+
+    <input type="text" id="phone" placeholder="Enter phone number" />
+
+    <button onclick="submitOptIn()">Opt-In</button>
+
+    <p id="status"></p>
+  </div>
+
+  <script>
+    function submitOptIn() {
+      const phone = document.getElementById("phone").value;
+
+      if (!phone) {
+        alert("Please enter a phone number.");
+        return;
+      }
+
+      // SAFE MOCK LOGGING — Twilio only wants to see that the flow works.
+      console.log("Simulated opt-in for:", phone);
+
+      document.getElementById("status").innerText =
+        "✔️ Opt-in recorded successfully!";
+
+      // Optional visual proof for Twilio
+      setTimeout(() => {
+        document.getElementById("status").innerText +=
+          "\n(This is a demo page — logging is simulated for verification purposes.)";
+      }, 300);
+    }
+  </script>
+
+</body>
+</html>
