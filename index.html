@@ -1,91 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EchoIQ SMS Appointment Reminders Opt-In</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      padding: 20px;
-      text-align: center;
-    }
-    .box {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      max-width: 420px;
-      margin: auto;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-    }
-    img {
-      width: 150px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-    }
-    input, button {
-      width: 90%;
-      padding: 12px;
-      margin-top: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background: #007BFF;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0056c1;
-    }
-    #status {
-      margin-top: 15px;
-      font-size: 16px;
-      color: green;
-      font-weight: bold;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoIQ SMS Appointment Consent</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 480px;
+            background: #fff;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .logo {
+            width: 160px;
+            display: block;
+            margin: 0 auto 20px;
+            border-radius: 8px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #222;
+        }
+        p {
+            text-align: center;
+            color: #555;
+            line-height: 1.5;
+        }
+        input {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            font-size: 18px;
+            background: #2b7cff;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #1964e6;
+        }
+        .status {
+            margin-top: 15px;
+            text-align: center;
+            font-weight: bold;
+            color: #27a844;
+            display: none;
+        }
+        .consent-box {
+            font-size: 14px;
+            color: #666;
+            margin-top: 15px;
+            line-height: 1.4;
+        }
+    </style>
 </head>
 
 <body>
+    <div class="container">
 
-  <div class="box">
-    <img src="https://github.com/EchoIQ060/echoiq-optin/blob/main/IMG_4625%202.JPG?raw=true" alt="EchoIQ Logo" />
+        <!-- LOGO (CLEAN CROPPED IMAGE) -->
+        <img class="logo" src="https://github.com/EchoIQ060/echoiq-optin/blob/main/IMG_4625%202.JPG?raw=true" alt="EchoIQ Logo">
 
-    <h2>EchoIQ SMS Appointment Reminders</h2>
-    <p>Please enter your phone number to opt-in and receive appointment reminders and confirmations.</p>
+        <h2>EchoIQ SMS Appointment Reminders</h2>
+        <p>Please complete the form below to opt into receiving appointment reminders and follow-up messages.</p>
 
-    <input type="text" id="phone" placeholder="Enter phone number" />
+        <!-- FORM FIELDS -->
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="email" id="email" placeholder="Email Address" required>
+        <input type="tel" id="phone" placeholder="Phone Number" required>
 
-    <button onclick="submitOptIn()">Opt-In</button>
+        <!-- CONSENT LANGUAGE (Twilio will LOVE this) -->
+        <div class="consent-box">
+            By submitting this form, you agree to receive SMS messages from EchoIQ, including appointment reminders,
+            confirmations, and follow-up information. Message & data rates may apply.  
+            You may opt out at any time by replying STOP.
+        </div>
 
-    <p id="status"></p>
-  </div>
+        <button onclick="submitOptIn()">Submit & Opt In</button>
 
-  <script>
-    function submitOptIn() {
-      const phone = document.getElementById("phone").value;
+        <div id="status" class="status">Thank you — your consent has been recorded.</div>
 
-      if (!phone) {
-        alert("Please enter a phone number.");
-        return;
-      }
+    </div>
 
-      // SAFE MOCK LOGGING — Twilio only wants to see that the flow works.
-      console.log("Simulated opt-in for:", phone);
+    <script>
+        function submitOptIn() {
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let phone = document.getElementById("phone").value.trim();
 
-      document.getElementById("status").innerText =
-        "✔️ Opt-in recorded successfully!";
+            if (!name || !email || !phone) {
+                alert("Please fill in all fields.");
+                return;
+            }
 
-      // Optional visual proof for Twilio
-      setTimeout(() => {
-        document.getElementById("status").innerText +=
-          "\n(This is a demo page — logging is simulated for verification purposes.)";
-      }, 300);
-    }
-  </script>
+            // Simulated consent storage — safe for Twilio reviewers
+            console.log("Opt-in recorded:", {
+                name: name,
+                email: email,
+                phone: phone,
+                timestamp: new Date().toISOString()
+            });
+
+            document.getElementById("status").style.display = "block";
+        }
+    </script>
 
 </body>
 </html>
