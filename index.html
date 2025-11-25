@@ -75,7 +75,6 @@
 </head>
 <body>
     <div class="container">
-
         <!-- LOGO -->
         <img class="logo" src="https://github.com/EchoIQ060/echoiq-optin/blob/main/IMG_4625%202.JPG?raw=true" alt="EchoIQ Logo">
 
@@ -83,9 +82,9 @@
         <p>Please complete the form below to opt into receiving appointment reminders and follow-up messages.</p>
 
         <!-- FORM FIELDS -->
-        <input type="text" id="name" placeholder="Full Name" required>
-        <input type="email" id="email" placeholder="Email Address" required>
-        <input type="tel" id="phone" placeholder="Phone Number" required>
+        <input type="text" id="name" placeholder="Full Name" required aria-label="Full Name">
+        <input type="email" id="email" placeholder="Email Address" required aria-label="Email Address">
+        <input type="tel" id="phone" placeholder="Phone Number (e.g. +15551234567)" required aria-label="Phone Number">
 
         <!-- CONSENT LANGUAGE -->
         <div class="consent-box">
@@ -96,8 +95,7 @@
 
         <button onclick="submitOptIn()">Submit & Opt In</button>
 
-        <div id="status" class="status">Thank you — your consent has been recorded.</div>
-
+        <div id="status" class="status"></div>
     </div>
 
     <script>
@@ -106,24 +104,34 @@
             const email = document.getElementById("email").value.trim();
             const phone = document.getElementById("phone").value.trim();
 
+            // Simple validation
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const phonePattern = /^\+?\d{10,15}$/; // Accept + and 10-15 digits
+
             if (!name || !email || !phone) {
                 alert("Please fill in all fields.");
                 return;
             }
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return;
+            }
+            if (!phonePattern.test(phone)) {
+                alert("Please enter a valid phone number with country code, e.g., +15551234567.");
+                return;
+            }
 
-            // Store consent (for Twilio review purposes, simulated here)
-            console.log("Opt-in recorded:", {
-                name,
-                email,
-                phone,
-                timestamp: new Date().toISOString()
-            });
+            const timestamp = new Date().toISOString();
+
+            // Log consent (simulated, can be sent to a backend for real audit)
+            console.log("Opt-in recorded:", { name, email, phone, timestamp });
 
             // Show confirmation message
             const statusDiv = document.getElementById("status");
             statusDiv.style.display = "block";
+            statusDiv.innerHTML = `Thank you, ${name}! Your consent has been recorded at ${new Date(timestamp).toLocaleString()}.<br>You may reply STOP to opt out at any time.`;
 
-            // Optionally, reset form
+            // Reset form
             document.getElementById("name").value = "";
             document.getElementById("email").value = "";
             document.getElementById("phone").value = "";
