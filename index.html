@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EchoIQ SMS Appointment Consent</title>
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -54,6 +53,7 @@
             border-radius: 10px;
             cursor: pointer;
             margin-top: 10px;
+            transition: background 0.3s;
         }
         button:hover {
             background: #1964e6;
@@ -73,11 +73,10 @@
         }
     </style>
 </head>
-
 <body>
     <div class="container">
 
-        <!-- LOGO (CLEAN CROPPED IMAGE) -->
+        <!-- LOGO -->
         <img class="logo" src="https://github.com/EchoIQ060/echoiq-optin/blob/main/IMG_4625%202.JPG?raw=true" alt="EchoIQ Logo">
 
         <h2>EchoIQ SMS Appointment Reminders</h2>
@@ -88,7 +87,7 @@
         <input type="email" id="email" placeholder="Email Address" required>
         <input type="tel" id="phone" placeholder="Phone Number" required>
 
-        <!-- CONSENT LANGUAGE (Twilio will LOVE this) -->
+        <!-- CONSENT LANGUAGE -->
         <div class="consent-box">
             By submitting this form, you agree to receive SMS messages from EchoIQ, including appointment reminders,
             confirmations, and follow-up information. Message & data rates may apply.  
@@ -103,26 +102,32 @@
 
     <script>
         function submitOptIn() {
-            let name = document.getElementById("name").value.trim();
-            let email = document.getElementById("email").value.trim();
-            let phone = document.getElementById("phone").value.trim();
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
 
             if (!name || !email || !phone) {
                 alert("Please fill in all fields.");
                 return;
             }
 
-            // Simulated consent storage — safe for Twilio reviewers
+            // Store consent (for Twilio review purposes, simulated here)
             console.log("Opt-in recorded:", {
-                name: name,
-                email: email,
-                phone: phone,
+                name,
+                email,
+                phone,
                 timestamp: new Date().toISOString()
             });
 
-            document.getElementById("status").style.display = "block";
+            // Show confirmation message
+            const statusDiv = document.getElementById("status");
+            statusDiv.style.display = "block";
+
+            // Optionally, reset form
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("phone").value = "";
         }
     </script>
-
 </body>
 </html>
