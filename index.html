@@ -1,141 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EchoIQ SMS Appointment Consent</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f7fa;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 480px;
-            background: #fff;
-            margin: 40px auto;
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        .logo {
-            width: 160px;
-            display: block;
-            margin: 0 auto 20px;
-            border-radius: 8px;
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 10px;
-            color: #222;
-        }
-        p {
-            text-align: center;
-            color: #555;
-            line-height: 1.5;
-        }
-        input {
-            width: 100%;
-            padding: 14px;
-            margin: 10px 0;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
-        button {
-            width: 100%;
-            padding: 14px;
-            font-size: 18px;
-            background: #2b7cff;
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.3s;
-        }
-        button:hover {
-            background: #1964e6;
-        }
-        .status {
-            margin-top: 15px;
-            text-align: center;
-            font-weight: bold;
-            color: #27a844;
-            display: none;
-        }
-        .consent-box {
-            font-size: 14px;
-            color: #666;
-            margin-top: 15px;
-            line-height: 1.4;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EchoIQ SMS Appointment Consent</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fa;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 480px;
+      background: #fff;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .logo {
+      width: 160px;
+      display: block;
+      margin: 0 auto 20px;
+      border-radius: 8px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #222;
+    }
+    p {
+      text-align: center;
+      color: #555;
+      line-height: 1.5;
+    }
+    input {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      font-size: 18px;
+      background: #2b7cff;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #1964e6;
+    }
+    .status {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+      color: #27a844;
+      display: none;
+    }
+    .consent-box {
+      font-size: 14px;
+      color: #666;
+      margin-top: 15px;
+      line-height: 1.4;
+    }
+    .policy-links {
+      font-size: 12px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .policy-links a {
+      color: #2b7cff;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+    .policy-links a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <!-- LOGO -->
-        <img class="logo" src="https://github.com/EchoIQ060/echoiq-optin/blob/main/IMG_4625%202.JPG?raw=true" alt="EchoIQ Logo">
+  <div class="container">
+    <!-- LOGO -->
+    <img class="logo" src="https://github.com/EchoIQ060/echoiq-optin/blob/main/IMG_4625%202.JPG?raw=true" alt="EchoIQ Logo">
 
-        <h2>EchoIQ SMS Appointment Reminders</h2>
-        <p>Please complete the form below to opt into receiving appointment reminders and follow-up messages.</p>
+    <h2>EchoIQ SMS Appointment Reminders</h2>
+    <p>Please complete the form below to opt into receiving appointment reminders and follow-up messages.</p>
 
-        <!-- FORM FIELDS -->
-        <input type="text" id="name" placeholder="Full Name" required aria-label="Full Name">
-        <input type="email" id="email" placeholder="Email Address" required aria-label="Email Address">
-        <input type="tel" id="phone" placeholder="Phone Number (e.g. +15551234567)" required aria-label="Phone Number">
+    <!-- FORM FIELDS -->
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email Address" required>
+    <input type="tel" id="phone" placeholder="Phone Number" required>
 
-        <!-- CONSENT LANGUAGE -->
-        <div class="consent-box">
-            By submitting this form, you agree to receive SMS messages from EchoIQ, including appointment reminders,
-            confirmations, and follow-up information. Message & data rates may apply.  
-            You may opt out at any time by replying STOP.
-        </div>
-
-        <button onclick="submitOptIn()">Submit & Opt In</button>
-
-        <div id="status" class="status"></div>
+    <!-- CONSENT LANGUAGE -->
+    <div class="consent-box">
+      By submitting this form, you agree to receive SMS messages from EchoIQ, including appointment reminders, confirmations, and follow-up information. Message & data rates may apply. You may opt out at any time by replying STOP.
     </div>
 
-    <script>
-        function submitOptIn() {
-            const name = document.getElementById("name").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const phone = document.getElementById("phone").value.trim();
+    <button onclick="submitOptIn()">Submit & Opt In</button>
+    <div id="status" class="status">Thank you — your consent has been recorded.</div>
 
-            // Simple validation
-            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const phonePattern = /^\+?\d{10,15}$/; // Accept + and 10-15 digits
+    <!-- PRIVACY & TOS LINKS -->
+    <div class="policy-links">
+      <a href="privacy.html" target="_blank">Privacy Policy</a> | 
+      <a href="terms.html" target="_blank">Terms of Service</a>
+    </div>
+  </div>
 
-            if (!name || !email || !phone) {
-                alert("Please fill in all fields.");
-                return;
-            }
-            if (!emailPattern.test(email)) {
-                alert("Please enter a valid email address.");
-                return;
-            }
-            if (!phonePattern.test(phone)) {
-                alert("Please enter a valid phone number with country code, e.g., +15551234567.");
-                return;
-            }
+  <script>
+    function submitOptIn() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
 
-            const timestamp = new Date().toISOString();
+      if (!name || !email || !phone) {
+        alert("Please fill in all fields.");
+        return;
+      }
 
-            // Log consent (simulated, can be sent to a backend for real audit)
-            console.log("Opt-in recorded:", { name, email, phone, timestamp });
+      // Store consent (for Twilio review purposes, simulated here)
+      console.log("Opt-in recorded:", { name, email, phone, timestamp: new Date().toISOString() });
 
-            // Show confirmation message
-            const statusDiv = document.getElementById("status");
-            statusDiv.style.display = "block";
-            statusDiv.innerHTML = `Thank you, ${name}! Your consent has been recorded at ${new Date(timestamp).toLocaleString()}.<br>You may reply STOP to opt out at any time.`;
+      // Show confirmation message
+      const statusDiv = document.getElementById("status");
+      statusDiv.style.display = "block";
 
-            // Reset form
-            document.getElementById("name").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("phone").value = "";
-        }
-    </script>
+      // Optionally, reset form
+      document.getElementById("name").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("phone").value = "";
+    }
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - EchoIQ</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto; line-height: 1.6; }
+    h1 { color: #222; }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy</h1>
+  <p>EchoIQ respects your privacy. By using our SMS appointment reminder services, we collect only the personal information necessary to provide these services, including your name, email, and phone number. Your data is securely stored and used solely for sending appointment-related messages. We do not share your information with third parties without consent.</p>
 </body>
 </html>
