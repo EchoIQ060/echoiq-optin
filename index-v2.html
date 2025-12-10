@@ -1,39 +1,130 @@
-// server.js
-import express from 'express';
-import fetch from 'node-fetch';
-import dotenv from 'dotenv';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EchoIQ SMS Appointment Opt-In</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 40px;
+      text-align: center;
+    }
 
-dotenv.config(); // loads AIRTABLE_TOKEN from .env
-const app = express();
-app.use(express.json());
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
 
-const AIRTABLE_BASE = "appHwT3O8fnX0rS8d"; // your base
-const AIRTABLE_TABLE = "Patients";
+    h1 {
+      color: #333;
+    }
 
-app.post('/submit-optin', async (req, res) => {
-  const { consent, timestamp } = req.body;
+    label {
+      display: block;
+      margin: 20px 0 10px;
+      font-size: 16px;
+      text-align: left;
+    }
 
-  try {
-    const response = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE}/${AIRTABLE_TABLE}`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${process.env.AIRTABLE_TOKEN}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        fields: {
-          Consent: consent,
-          Timestamp: timestamp
-        }
-      })
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .confirmation {
+      color: green;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .policy {
+      font-size: 12px;
+      color: #555;
+      margin-top: 25px;
+      text-align: left;
+    }
+
+    img.logo {
+      width: 140px;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- LOGO (kept exactly as you had it) -->
+    <img
+      src="https://github.com/EchoIQ060/echoiq-optin/blob/main/IMG_4625%202.JPG?raw=true"
+      alt="EchoIQ Logo"
+      class="logo"
+    />
+
+    <h1>EchoIQ SMS Appointment Reminders</h1>
+
+    <p>
+      Please opt-in to receive appointment reminders, confirmations, and support
+      messages via SMS from your dental office.
+    </p>
+
+    <!-- REQUIRED CHECKBOX (added per Twilio compliance) -->
+    <form id="optinForm">
+      <label>
+        <input type="checkbox" id="consentCheckbox" required />
+        I consent to receive SMS messages from my dental office.
+      </label>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <!-- CONFIRMATION MESSAGE (same as your version) -->
+    <div class="confirmation" id="confirmationMessage">
+      Thank you! You are now opted-in to receive appointment reminders.
+      Reply HELP for assistance or STOP to unsubscribe.
+    </div>
+
+    <!-- REQUIRED PRIVACY POLICY TEXT (Twilio-mandated) -->
+    <div class="policy">
+      <strong>Privacy Policy</strong><br /><br />
+      No mobile information will be shared with third parties/affiliates for
+      marketing/promotional purposes. Information sharing to subcontractors in
+      support services, such as customer service, is permitted. All other use
+      case categories exclude text messaging originator opt-in data and consent;
+      this information will not be shared with any third parties.
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("optinForm");
+    const confirmation = document.getElementById("confirmationMessage");
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      if (document.getElementById("consentCheckbox").checked) {
+        form.style.display = "none";
+        confirmation.style.display = "block";
+      }
     });
-
-    if (!response.ok) throw new Error('Failed to save to Airtable');
-    res.status(200).send("Success");
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error");
-  }
-});
-
-app.listen(3000, () => console.log("Server running on port 3000"));
+  </script>
+</body>
+</html>
