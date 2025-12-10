@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EchoIQ SMS Opt-In</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f7f7f7; padding: 40px; text-align: center; }
+    .container { background: #fff; padding: 30px; border-radius: 10px; max-width: 500px; margin: auto; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    h1 { color: #333; }
+    label { display: block; margin: 15px 0; font-size: 16px; text-align: left; }
+    input[type="checkbox"] { margin-right: 10px; }
+    input[type="text"], input[type="tel"] { width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc; }
+    button { padding: 12px 22px; background: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px; }
+    button:hover { background: #0056b3; }
+    .confirmation { color: green; margin-top: 20px; display: none; }
+    .policy { margin-top: 20px; font-size: 14px; }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>EchoIQ SMS Appointment Reminders</h1>
+
+    <p>Please opt-in to receive appointment reminders, confirmations, and support messages via SMS from your dental office.</p>
+
+    <form id="optinForm">
+      <label>
+        <input type="checkbox" id="consentCheckbox" required>
+        I consent to receive SMS messages related to my dental appointments.
+      </label>
+
+      <label>
+        Your Name:
+        <input type="text" required>
+      </label>
+
+      <label>
+        Phone Number:
+        <input type="tel" required>
+      </label>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div class="confirmation" id="confirmationMessage">
+      Thank you! You are now opted-in to receive appointment reminders.  
+      Reply STOP to unsubscribe or HELP for assistance.
+    </div>
+
+    <div class="policy">
+      <a href="privacy.html" target="_blank">Privacy Policy</a>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('optinForm');
+    const confirmation = document.getElementById('confirmationMessage');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      if (!document.getElementById('consentCheckbox').checked) return;
+
+      form.style.display = 'none';
+      confirmation.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
