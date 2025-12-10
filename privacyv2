@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Privacy Policy - EchoIQ</title>
+  <style>
+    body { max-width: 700px; margin: auto; padding: 20px; font-family: Arial; }
+    h1, h2 { color: #333; }
+  </style>
+</head>
+<body>
+
+  <h1>EchoIQ Privacy Policy</h1>
+
+  <p>Your privacy is important to us. This policy explains how your information is used when you opt in for SMS messages.</p>
+
+  <h2>SMS Consent</h2>
+  <p>
+    By opting in on our website, you agree to receive SMS appointment reminders, confirmations,
+    and support messages from your dental office. You may withdraw your consent at any time by replying STOP.
+  </p>
+
+  <h2>Required Compliance Statement</h2>
+  <p><strong>
+    No mobile information will be shared with third parties/affiliates for marketing/promotional
+    purposes. Information sharing to subcontractors in support services, such as customer service,
+    is permitted. All other use case categories exclude text messaging originator opt-in data and
+    consent; this information will not be shared with any third parties.
+  </strong></p>
+
+  <h2>Data Usage</h2>
+  <p>Your information is used only for appointment-related communication.</p>
+
+</body>
+</html>
