@@ -1,130 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EchoIQ SMS Appointment Opt-In</title>
-  <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EchoIQ SMS Appointment Reminders</title>
+
+<style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      padding: 40px;
-      text-align: center;
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background: #f4f5f7;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .container {
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      max-width: 500px;
-      margin: auto;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        background: white;
+        margin-top: 50px;
+        padding: 40px 32px;
+        width: 420px;
+        border-radius: 14px;
+        box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+        text-align: center;
+    }
+
+    .logo {
+        width: 110px;
+        margin-bottom: 12px;
     }
 
     h1 {
-      color: #333;
+        font-size: 22px;
+        margin-bottom: 8px;
+        color: #222;
     }
 
-    label {
-      display: block;
-      margin: 20px 0 10px;
-      font-size: 16px;
-      text-align: left;
+    p {
+        font-size: 14px;
+        color: #555;
+        margin-bottom: 25px;
+        line-height: 1.4;
     }
 
-    input[type="checkbox"] {
-      margin-right: 10px;
+    input, label {
+        width: 100%;
+        display: block;
+        text-align: left;
+    }
+
+    input {
+        padding: 12px 14px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin-bottom: 16px;
+        font-size: 14px;
+    }
+
+    .consent-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-top: -5px;
+        margin-bottom: 18px;
+        text-align: left;
+    }
+
+    .consent-row input {
+        width: auto;
+        margin-top: 3px;
+    }
+
+    .consent-row label {
+        font-size: 13px;
+        color: #444;
+        line-height: 1.3;
     }
 
     button {
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      background: #007bff;
-      color: white;
-      cursor: pointer;
-      margin-top: 10px;
+        width: 100%;
+        padding: 14px;
+        background: #1e66ff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        cursor: pointer;
+        margin-top: 10px;
     }
 
     button:hover {
-      background: #0056b3;
+        background: #1454d8;
     }
 
-    .confirmation {
-      color: green;
-      margin-top: 20px;
-      display: none;
+    .footer-links {
+        margin-top: 12px;
+        font-size: 13px;
     }
 
-    .policy {
-      font-size: 12px;
-      color: #555;
-      margin-top: 25px;
-      text-align: left;
+    .footer-links a {
+        color: #555;
+        text-decoration: none;
+        margin: 0 6px;
     }
 
-    img.logo {
-      width: 140px;
-      margin-bottom: 15px;
+    .privacy-section {
+        margin-top: 60px;
+        padding: 0 24px;
+        max-width: 800px;
     }
-  </style>
+
+    .privacy-section h2 {
+        font-size: 22px;
+        margin-bottom: 10px;
+        color: #111;
+    }
+
+    .privacy-section p {
+        font-size: 15px;
+        line-height: 1.55;
+        color: #444;
+    }
+</style>
 </head>
-<body>
-  <div class="container">
 
-    <!-- LOGO (kept exactly as you had it) -->
-    <img
-      src="https://github.com/EchoIQ060/echoiq-optin/blob/main/IMG_4625%202.JPG?raw=true"
-      alt="EchoIQ Logo"
-      class="logo"
-    />
+<body>
+
+<div class="container">
+    <img src="IMG_4625%202.JPG" class="logo" alt="EchoIQ Logo" />
 
     <h1>EchoIQ SMS Appointment Reminders</h1>
 
-    <p>
-      Please opt-in to receive appointment reminders, confirmations, and support
-      messages via SMS from your dental office.
-    </p>
+    <p>Please complete the form below to opt in to receiving appointment reminders and follow-up messages.</p>
 
-    <!-- REQUIRED CHECKBOX (added per Twilio compliance) -->
-    <form id="optinForm">
-      <label>
-        <input type="checkbox" id="consentCheckbox" required />
-        I consent to receive SMS messages from my dental office.
-      </label>
+    <form>
+        <input type="text" placeholder="Full Name" required />
+        <input type="email" placeholder="Email Address" />
+        <input type="tel" placeholder="Phone Number" required />
 
-      <button type="submit">Submit</button>
+        <div class="consent-row">
+            <input type="checkbox" id="consentBox" required />
+            <label for="consentBox">
+                I consent to receive SMS messages from EchoIQ, including appointment reminders,
+                confirmations, and follow-up information. Message & data rates may apply. I may opt out at any
+                time by replying STOP.
+            </label>
+        </div>
+
+        <button type="submit">Submit & Opt In</button>
+
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms of Service</a>
+        </div>
     </form>
+</div>
 
-    <!-- CONFIRMATION MESSAGE (same as your version) -->
-    <div class="confirmation" id="confirmationMessage">
-      Thank you! You are now opted-in to receive appointment reminders.
-      Reply HELP for assistance or STOP to unsubscribe.
-    </div>
+<div class="privacy-section">
+    <h2>Privacy Policy</h2>
+    <p>
+        EchoIQ respects your privacy. By using our SMS appointment reminder services, we collect only the personal
+        information necessary to provide these services, including your name, email, and phone number.
+    </p>
+    <p>
+        <strong>No mobile information will be shared with third parties/affiliates for marketing/promotional purposes.</strong>
+        Information sharing to subcontractors in support services, such as customer service, is permitted. All other
+        use case categories exclude text messaging originator opt-in data and consent; this information will not be 
+        shared with any third parties.
+    </p>
+    <p>Your data is securely stored and used solely for appointment-related messaging.</p>
+</div>
 
-    <!-- REQUIRED PRIVACY POLICY TEXT (Twilio-mandated) -->
-    <div class="policy">
-      <strong>Privacy Policy</strong><br /><br />
-      No mobile information will be shared with third parties/affiliates for
-      marketing/promotional purposes. Information sharing to subcontractors in
-      support services, such as customer service, is permitted. All other use
-      case categories exclude text messaging originator opt-in data and consent;
-      this information will not be shared with any third parties.
-    </div>
-  </div>
-
-  <script>
-    const form = document.getElementById("optinForm");
-    const confirmation = document.getElementById("confirmationMessage");
-
-    form.addEventListener("submit", function (event) {
-      event.preventDefault();
-      if (document.getElementById("consentCheckbox").checked) {
-        form.style.display = "none";
-        confirmation.style.display = "block";
-      }
-    });
-  </script>
 </body>
 </html>
